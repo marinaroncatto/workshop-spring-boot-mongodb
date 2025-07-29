@@ -38,4 +38,15 @@ public class UserService {
 		findById(id); //se não encontra já mostra exceção
 		repo.deleteById(id);
 	}
+	
+	public User update(User obj) {
+		User newObj = findById(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+	
+	private void updateData(User newObj, User obj) {
+		newObj.setName(obj.getName());
+		newObj.setEmail(obj.getEmail());
+	}
 }
